@@ -182,7 +182,14 @@ function uniqueOccurences(arr){
 
 
       //setp 4; 
-      return freq.length === uniqueFreq.size;  // we find the length of array using '.length' and we find the length of the object by using uniqreFreq.size; 
+    //   length = freq.length; 
+    //   console.log(length, "length"); 
+
+    //   let ufl = uniqueFreq.size; 
+    //   console.log(ufl, "ufl");
+    //   let chLength = freq.length === uniqueFreq.size;
+    //   console.log(chLength, "chlength; ;")
+      return   freq.length === uniqueFreq.size; // we find the length of array using '.length' and we find the length of the object by using uniqreFreq.size; 
 }
 
 console.log(uniqueOccurences([1,2,2,1,1,3,3]), "1st");

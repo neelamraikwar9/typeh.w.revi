@@ -262,8 +262,6 @@ console.log(sumUniqueNums(numbs), "hjkjlkjkkljkjkjkl88888");
 
 // You can use each character in text at most once. Return the maximum number of instances that can be formed.
 
-
-
 // let text = "nlaebolko"
 let text = "loonbalxballpoon";
 
@@ -342,194 +340,247 @@ console.log(countBaloons(text), "kjldkjfdkljkkkkk");
 
 // RETURN: 1 balloon 🎈
 
-
-
 // 771. Jewels and Stones
 // You're given strings jewels representing the types of stones that are jewels, and stones representing the stones you have. Each character in stones is a type of stone you have. You want to know how many of the stones you have are also jewels.
 
 // Letters are case sensitive, so "a" is considered a different type of stone from "A".
 
-
 let jewels = "aA";
-let stones = "aAAbbbb"; 
+let stones = "aAAbbbb";
 
 const jewelsAlsoStones = (jewels, stones) => {
-    const jewelSet = new Set(jewels); 
-    console.log(jewelSet, "jewelSet"); 
+  const jewelSet = new Set(jewels);
+  console.log(jewelSet, "jewelSet");
 
-    let count = 0; 
-    for(let i = 0; i < stones.length; i++){
-      if(jewelSet.has(stones[i])){
-        count++; 
-      }
+  let count = 0;
+  for (let i = 0; i < stones.length; i++) {
+    if (jewelSet.has(stones[i])) {
+      count++;
     }
-    return count; 
-}
+  }
+  return count;
+};
 
-console.log(jewelsAlsoStones(jewels, stones), "fjdfkdf"); 
-
+console.log(jewelsAlsoStones(jewels, stones), "fjdfkdf");
 
 // 409. Longest Palindrome
 // Given a string s which consists of lowercase or uppercase letters, return the length of the longest palindrome that can be built with those letters.
 
-// s = "abccccdd"; 
+// s = "abccccdd";
 // s = "abbccdddd"
-s = "aa"
+s = "aa";
 
-//Palindrome Rule: At most 1 character can have odd count. All others must be even.
-// const lengthOfPalindrome = (s) => {
-//   let count = {};
-//  for(let char of s){
-//   count[char] = (count[char] || 0) + 1; 
-//   console.log(count, "kdkljdkjfdlkj"); 
-
-//   let freq = Object.values(count); 
-//   console.log(freq, "freq"); 
-
-//   let length = 0 ; 
-
-//   for(let num of freq){
-//     if(num % 2 === 0){
-//       length = length + num;
-//       console.log(length, "lengg")
-//     }
-//     if(freq % 2 === 1) {
-//       hasOdd = true; 
-//     }
-//   }
-//   return hasOdd ? length + 1 : length; 
- 
-//  };
-// }
-
-// console.log(lengthOfPalindrome(s), "kjlkljdkljlkjkjlkjlkljkjlkjjkl"); 
-
-
-function lengthOfPalindrome(s){
-  let count = {}; 
-  for(ch of s){
-    count[ch] = (count[ch] | 0) + 1; 
-    console.log(count, "count nn"); 
+function lengthOfPalindrome(s) {
+  let count = {};
+  for (ch of s) {
+    count[ch] = (count[ch] | 0) + 1;
+    console.log(count, "count nn");
   }
 
-  let palindrome = Object.values(count); 
-  console.log(palindrome, "parlinkdfjkj")
+  let palindrome = Object.values(count);
+  console.log(palindrome, "parlinkdfjkj");
 
-  // let palindromeLength = 0;
-  // let hasOdd = false;  //
+  let [palindromeLength, hasOdd] = palindrome.reduce(
+    (acc, curr) => {
+      // ✅ CORRECT: Get even part only
+      acc[0] += curr - (curr % 2);
 
-  // let palindromeLength = palindrome.reduce((acc, curr) => {
-   
-  //   //checking even; 
-  //   acc+= curr - (curr%2 === 0);
-    
-  //   // track of Odd; 
-  //   if(curr % 2 === 1){
-  //     hasOdd = true; 
-  //   }
-   
-  //   return [acc, hasOdd] 
+      // ✅ Track odds
+      if (curr % 2 === 1) {
+        acc[1] = true;
+      }
 
-  // }, [0, false]); // Start with [length=0, hasOdd=false]
+      return acc; // Return SAME array
+    },
+    [0, false],
+  ); // Start [length, hasOdd]
 
+  console.log(palindromeLength, "palindromeLength");
 
-   let [palindromeLength, hasOdd] = palindrome.reduce((acc, curr) => {
-        // ✅ CORRECT: Get even part only
-        acc[0] += curr - (curr % 2);  
-        
-        // ✅ Track odds
-        if(curr % 2 === 1) {
-            acc[1] = true;
-        }
-        
-        return acc;  // Return SAME array
-    }, [0, false]);  // Start [length, hasOdd]
-
-  console.log(palindromeLength, "palindromeLength"); 
-
-  return hasOdd ? (palindromeLength + 1) : palindromeLength
-
+  return hasOdd ? palindromeLength + 1 : palindromeLength;
 }
 
-// console.log(lengthOfPalindrome(s)); 
-console.log(lengthOfPalindrome(s), "youiyuyuyuy"); 
-
-
-
-
+// console.log(lengthOfPalindrome(s));
+console.log(lengthOfPalindrome(s), "youiyuyuyuy");
 
 // ❌ Can't use ALL letters (2 odds: a,b)
 // ✅ We DISCARD 'b' and use: a:1, c:4, d:2
 
 // Final counts used:
-// a:1 (CENTER)  
-// c:4 (pairs)  
-// d:2 (pairs)  
+// a:1 (CENTER)
+// c:4 (pairs)
+// d:2 (pairs)
 // b:0 (discarded!)
 
 // Now: 1 odd (a) + all even → VALID!
 
-
-
-
-// Visual Flow
+5; // Visual Flow
 // text
 // Initial: [0, false]     // [length, hasOdd]
 
-// Step 1 (a:1): 
-// acc[0] = 0 + (1-1) = 0  
+// Step 1 (a:1):
+// acc[0] = 0 + (1-1) = 0
 // acc[1] = true
 // Return: [0, true]
 
-// Step 2 (b:1): 
-// acc[0] = 0 + (1-1) = 0  
+// Step 2 (b:1):
+// acc[0] = 0 + (1-1) = 0
 // acc[1] = true (already)
 // Return: [0, true]
 
-// Step 3 (c:4): 
+// Step 3 (c:4):
 // acc[0] = 0 + (4-0) = 4
 // Return: [4, true]
 
-// Step 4 (d:2): 
+// Step 4 (d:2):
 // acc[0] = 4 + (2-0) = 6
 // Return: [6, true]  ← Final!
 // Destructuring gets both values
 // javascript
-// let [palindromeLength, hasOdd] = frequencies.reduce(...);  
+// let [palindromeLength, hasOdd] = frequencies.reduce(...);
 // //          ↑                    ↑
 // //       6                  true
 
+var longestPalindrome = function (s) {
+  //counting frequencies for each element in the string;
+  let count = {};
+  for (let char of s) {
+    count[char] = (count[char] || 0) + 1;
+    console.log(count);
+  }
 
+  let Palindrome = Object.values(count);
 
+  let [PalindromeLength, hasOdd] = Palindrome.reduce(
+    (acc, curr) => {
+      //get even;
 
+      acc[0] += curr - (curr % 2);
 
+      //track odd;
 
-var longestPalindrome = function(s) {
-    //counting frequencies for each element in the string; 
-    let count = {};
-    for(let char of s){
-        count[char] = (count[char] || 0) + 1; 
-        console.log(count); 
-    }
+      if (curr % 2 === 1) {
+        acc[1] = true;
+      }
 
-    let Palindrome = Object.values(count); 
+      return acc;
+    },
+    [0, false],
+  );
 
-    let [PalindromeLength, hasOdd] = Palindrome.reduce((acc, curr) => 
-    {
-        //get even; 
-
-        acc[0] += curr - (curr % 2); 
-
-        //track odd; 
-
-        if(curr % 2 === 1){
-            acc[1] = true; 
-        }
-
-        return acc;
-    }, [0, false]); 
-
-    return hasOdd ? (PalindromeLength + 1) : PalindromeLength; 
+  return hasOdd ? PalindromeLength + 1 : PalindromeLength;
 };
 
 console.log(longestPalindrome(s));
+
+//5 Feb 2026
+
+// 383. Ransom Note
+// Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+
+((ransomNote = "aa"), (magazine = "aab"));
+// ransomNote = "aa", magazine = "ab"
+
+var canConstruct = function (ransomNote, magazine) {
+  let count = {};
+
+  for (let ch of magazine) {
+    count[ch] = (count[ch] || 0) + 1;
+  }
+
+  for (let chh of ransomNote) {
+    if (!count[chh] || count[chh] === 0) {
+      return false;
+    }
+    count[chh]--;
+  }
+
+  return true;
+};
+console.log(canConstruct(ransomNote, magazine), "ransome");
+
+//17 Feb, 26
+
+//242. Valid Anagram
+//Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+// let sv = "anagram";
+// let tv = "nagaram";
+
+// let sv = "rat";
+// let tv = "car";
+
+let sv = "ab";
+let tv = "a";
+
+let isAnagram = function (sv, tv) {
+  if (sv.length !== tv.length) {
+    return false;
+  }
+
+  let count = {};
+
+  for (let ch of sv) {
+    count[ch] = (count[ch] || 0) + 1;
+    console.log(count, "count");
+  }
+
+  for (let chh of tv) {
+    if (!count[chh] || count[chh] === 0) {
+      return false;
+    }
+    count[chh]--;
+  }
+
+  return true;
+};
+
+console.log(isAnagram(sv, tv), "aragrammm?");
+
+//18 Feb, 26
+// 387. First Unique Character in a String; 
+// Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+let su =  "leetcode"; 
+// let su = "loveleetcode"
+
+const uniqueChar = (su) => {
+ count = {}; 
+  for(let ch of su){
+    count[ch] = (count[ch] || 0) + 1; 
+    console.log(count, "count"); 
+  }
+
+  for(let i = 0; i < su.length; i++){
+    if(count[su[i]] === 1) 
+    return i; 
+  }
+
+  return -1
+
+}
+console.log((uniqueChar(su)), "uniqueChar"); 
+
+// 19/2/26
+//1207. Unique Number of Occurrences
+// Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+
+//  Input: arr = [1,2,2,1,1,3]; 
+ Input: arr = [1,2]; 
+//  Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]; 
+
+ function uniqueNumOcc(arr){
+  let count = {}; 
+    for(let num of arr){
+      count[num] = (count[num] || 0) + 1; 
+    }
+
+    const freq = Object.values(count); 
+
+    const uniqueFrq = new Set(freq);
+    console.log(uniqueFrq, "uniqueFrq"); 
+
+    return freq.length === uniqueFrq.size; 
+ }
+
+ console.log( uniqueNumOcc(arr), "arr unique num");
