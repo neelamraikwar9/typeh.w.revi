@@ -230,43 +230,135 @@ console.log(recordFun(record), "record");
 let nums = [1, 1, 0, 1, 1, 1];
 
 const getconsecutive = (nums) => {
-  let count = 0; 
-  let maxCount = 0; 
-  for(let i = 0; i < nums.length; i++){
-    if(nums[i] === 1){
-      count++
-      if(count > maxCount){
-        maxCount = count; 
+  let count = 0;
+  let maxCount = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 1) {
+      count++;
+      if (count > maxCount) {
+        maxCount = count;
       }
-    } else{
-      count = 0; 
+    } else {
+      count = 0;
     }
   }
-  return maxCount; 
-}
-console.log(getconsecutive(nums), "nums."); 
-
+  return maxCount;
+};
+console.log(getconsecutive(nums), "nums.");
 
 //674. Longest Continuous Increasing Subsequence
 
 // let numss = [1, 3, 5, 4, 7];
-let numss = [2,2,2,2,2]
+let numss = [2, 2, 2, 2, 2];
 
 const longestContinuousIncSub = (numss) => {
-  let count = 1; 
-  let maxCount = 1; 
-  for(let i = 0; i < numss.length; i++){
-    if(numss[i] < numss[i + 1]){
-      count++; 
-      if(count > maxCount){
-        maxCount = count; 
+  let count = 1;
+  let maxCount = 1;
+  for (let i = 0; i < numss.length; i++) {
+    if (numss[i] < numss[i + 1]) {
+      count++;
+      if (count > maxCount) {
+        maxCount = count;
       }
+    } else {
+      count = 0;
     }
-    else{
-      count = 0; 
-    }
-
   }
-  return maxCount; 
+  return maxCount;
+};
+console.log(longestContinuousIncSub(numss), " continues subsiquent");
+
+//again 674
+
+let n = [1, 3, 5, 4, 7];
+
+function lcis(n) {
+  let count = 1;
+  let maxCount = 1;
+  for (let i = 0; i < n.length; i++) {
+    if (n[i] < n[i + 1]) {
+      count++;
+      if (count > maxCount) {
+        maxCount = count;
+      }
+    } else {
+      count = 0;
+    }
+  }
+  return maxCount;
 }
-console.log(longestContinuousIncSub(numss)," continues subsiquent");
+console.log(lcis(n), "nummm");
+
+//my own created question;
+let count = [1, 2, 3, 4, 5, 6, 5, 8, 7, 9, 3, 6];
+const lonconstr = (count) => {
+  let c = 1;
+  let mc = 1;
+  for (let i = 0; i < count.length; i++) {
+    if (count[i] < count[i + 1]) {
+      c++;
+      if (c > mc) {
+        mc = c;
+      }
+    } else {
+      c = 0;
+    }
+  }
+  return mc;
+};
+console.log(lonconstr(count), "counmy");
+
+// First Unique Character in a String.
+// let str = "puppy";
+let str = "aabb";
+
+
+function firUniqChar(str) {
+  //using for of loop here; 
+
+  const count = {}
+  for(let char of str){
+    count[char] = (
+      count[char] || 0
+    ) + 1
+  }
+console.log(count); 
+
+// ste 2
+
+for(let i = 0; i < str.length; i++){
+  if(count[str[i]] === 1){
+    return i ;
+  }
+}
+return -1; 
+}
+console.log(firUniqChar(str), "stng"); 
+// firUniqChar(str); 
+
+
+// 2nd Q
+
+// let arr = [1, 2, 2, 1, 1, 3];
+let arr = [1, 2, 2, 1, 1, 3, 3];
+
+function uniOcc(arr){
+  // step1 keep count; 
+  let intCount = {}; 
+  for(let num of arr){
+    intCount[num] = (intCount [num] || 0) + 1; 
+  }
+  console.log(intCount, "int"); 
+
+  //step2
+  const freq = Object.values(intCount);  //it give values of the object; 
+  console.log(freq, "freq"); 
+
+  //step 3 extracting unique value; 
+  const uniqueFreq = new Set(freq);  // used to extract unique char.
+  console.log(uniqueFreq, "uniFreq"); 
+
+  return freq.length === uniqueFreq.size;  // for finding size of obj we use that obj.size. 
+
+}
+console.log(uniOcc(arr)); 
