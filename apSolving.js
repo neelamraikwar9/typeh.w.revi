@@ -312,53 +312,156 @@ console.log(lonconstr(count), "counmy");
 // let str = "puppy";
 let str = "aabb";
 
-
 function firUniqChar(str) {
-  //using for of loop here; 
+  //using for of loop here;
 
-  const count = {}
-  for(let char of str){
-    count[char] = (
-      count[char] || 0
-    ) + 1
+  const count = {};
+  for (let char of str) {
+    count[char] = (count[char] || 0) + 1;
   }
-console.log(count); 
+  console.log(count);
 
-// ste 2
+  // ste 2
 
-for(let i = 0; i < str.length; i++){
-  if(count[str[i]] === 1){
-    return i ;
+  for (let i = 0; i < str.length; i++) {
+    if (count[str[i]] === 1) {
+      return i;
+    }
   }
+  return -1;
 }
-return -1; 
-}
-console.log(firUniqChar(str), "stng"); 
-// firUniqChar(str); 
-
+console.log(firUniqChar(str), "stng");
+// firUniqChar(str);
 
 // 2nd Q
 
 // let arr = [1, 2, 2, 1, 1, 3];
 let arr = [1, 2, 2, 1, 1, 3, 3];
 
-function uniOcc(arr){
-  // step1 keep count; 
-  let intCount = {}; 
-  for(let num of arr){
-    intCount[num] = (intCount [num] || 0) + 1; 
+function uniOcc(arr) {
+  // step1 keep count;
+  let intCount = {};
+  for (let num of arr) {
+    intCount[num] = (intCount[num] || 0) + 1;
   }
-  console.log(intCount, "int"); 
+  console.log(intCount, "int");
 
   //step2
-  const freq = Object.values(intCount);  //it give values of the object; 
-  console.log(freq, "freq"); 
+  const freq = Object.values(intCount); //it give values of the object;
+  console.log(freq, "freq");
 
-  //step 3 extracting unique value; 
-  const uniqueFreq = new Set(freq);  // used to extract unique char.
-  console.log(uniqueFreq, "uniFreq"); 
+  //step 3 extracting unique value;
+  const uniqueFreq = new Set(freq); // used to extract unique char.
+  console.log(uniqueFreq, "uniFreq");
 
-  return freq.length === uniqueFreq.size;  // for finding size of obj we use that obj.size. 
-
+  return freq.length === uniqueFreq.size; // for finding size of obj we use that obj.size.
 }
-console.log(uniOcc(arr)); 
+console.log(uniOcc(arr));
+
+// 17 Apr,2026
+// 674
+let s = [1, 2, 3, 4, 5, 3, 2, 1];
+
+function cc(s) {
+  let c = 1;
+  let mc = 1;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] < s[i + 1]) {
+      c++;
+
+      if (c > mc) {
+        mc = c;
+      }
+    } else {
+      c = 0;
+    }
+  }
+  return mc;
+}
+console.log(cc(s), "s");
+
+//Frequency coutner patern ;
+
+// let st = "puppy"
+let st = "jjiiu"
+
+function fuc(st){
+  // for of loop; 
+  let co = {}
+  for(ch of st){
+    co[ch] = (co[ch] || 0) + 1;
+  }
+   console.log(co, "co"); 
+
+  //  step: 2
+  const fre = Object.values(co); 
+  console.log(fre, "fre"); 
+
+  for(let i = 0; i < fre.length; i++){
+    if(fre[i] === 1){
+      return i; 
+    }
+  
+  }
+  return -1; 
+}
+console.log(fuc(st)); 
+
+
+// 2. 
+
+let r = [1, 2, 2, 1, 1, 3];
+// let r = [1, 2]; 
+
+
+function uno(r) {
+  let c = {};
+  for (n of r) {
+    c[n] = (c[n] || 0) + 1;
+  }
+  console.log("c,,", c);
+  //get values frm obj
+  let fre = Object.values(c);
+  console.log(fre, "freq");
+
+  // let uf = new Set(fre); 
+  // console.log(uf, "uf"); 
+
+  for(let i = 0; i < fre.length; i++){
+    if(fre[i] === i){
+      return true; 
+    }
+  }                                                                                                                         
+  return false; 
+}
+console.log(uno(r));   // will continue quickly frm here.                                                                                                                                                                                                                                                               
+
+
+// //first unique char
+// const st = "puppy"
+
+// function fcp(st){
+//   const count = {}
+//   //step 1; 
+//   for(char of st){
+//     count[char] = (count[char] || 0) + 1; 
+//   }
+//     console.log(count, "count22"); 
+//   // step 2; getting value of obj in the array; 
+
+//   const frq = Object.values(count); 
+//   console.error(frq, "freq"); 
+
+//   const uniFreq = new Set(frq); 
+//   console.log(uniFreq, "uni"); 
+   
+//   return uniFreq; 
+// }
+// fcp(st); 
+
+// // //1446
+// // let str = "leetcode";
+
+// // function cCher(){
+// //   for(let i = 0; i < )
+// // }
