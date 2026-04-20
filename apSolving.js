@@ -410,8 +410,8 @@ console.log(fuc(st));
 
 // 2. 
 
-let r = [1, 2, 2, 1, 1, 3];
-// let r = [1, 2]; 
+// let r = [1, 2, 2, 1, 1, 3];
+let r = [1, 2]; 
 
 
 function uno(r) {
@@ -424,44 +424,163 @@ function uno(r) {
   let fre = Object.values(c);
   console.log(fre, "freq");
 
-  // let uf = new Set(fre); 
-  // console.log(uf, "uf"); 
+  let uf = new Set(fre); 
+  console.log(uf, "uf"); 
 
-  for(let i = 0; i < fre.length; i++){
-    if(fre[i] === i){
-      return true; 
-    }
-  }                                                                                                                         
-  return false; 
+  return fre.length === uf.size
+  
 }
-console.log(uno(r));   // will continue quickly frm here.                                                                                                                                                                                                                                                               
+console.log(uno(r), "mmm");   // will continue quickly frm here.       
 
 
+function uniqueOccurance(r){
+  const intC = {}; 
+  // step1
+  for(let num of r){
+    intC[num] = (intC[num] || 0) + 1; 
+  }
+  // console.log(intC, "intC"); 
+
+  // step2
+
+  const fr = Object.values(intC); 
+  console.log(fr, "fr"); 
+
+  //step3 
+
+  const uf = new Set(fr); 
+  console.log(uf, "uf"); 
+
+  //step 4 
+  // seeing if length of unique freq and freq match or not
+  return fr.length === uf.size
+}
+console.log(uniqueOccurance(r), "un");
+
+
+//1446
 // //first unique char
-// const st = "puppy"
+// const stg = "leetcode"
 
-// function fcp(st){
-//   const count = {}
-//   //step 1; 
-//   for(char of st){
-//     count[char] = (count[char] || 0) + 1; 
+// function cc(stg){
+//   // let c = {}
+//   // for(w of stg){
+//   //   c[w] = (c[w] || 0) + 1; 
+//   // }
+//   // console.log(c, "c"); 
+
+//   for(let i = 0; i < stg.length; i++){
+//     let count = 1
+//     if(stg[i] === stg[i + 1]){
+//       count++
+//     } else{
+//       count = 0; 
+//     }
+//     console.log(count, "count"); 
 //   }
-//     console.log(count, "count22"); 
-//   // step 2; getting value of obj in the array; 
-
-//   const frq = Object.values(count); 
-//   console.error(frq, "freq"); 
-
-//   const uniFreq = new Set(frq); 
-//   console.log(uniFreq, "uni"); 
-   
-//   return uniFreq; 
+//   return count; 
+  
 // }
-// fcp(st); 
+// console.log(cc(stg), "stg"); 
 
-// // //1446
-// // let str = "leetcode";
+// let ss = "leetcode"; 
+let ss = "abbcccddddeeeeedcba";
 
-// // function cCher(){
-// //   for(let i = 0; i < )
-// // }
+// function cc(ss){
+//   c = 1; 
+//   max = 1; 
+//   for(let i = 0; i < ss.length; i++){
+//      if(ss[i] === ss[i + 1]){
+//       c++; 
+//       if(c > max){
+//         max = c; 
+//       }
+//      } else{
+//       c; 
+//      }
+//   }
+//   return max; 
+
+// }
+// console.log(cc(ss), "ccss"); 
+
+
+//current one below; 
+
+// var maxPower = function (ss) {
+//   let count = 1;
+//   let maxCount = 1;
+//   for (let i = 0; i < ss.length; i++) {
+//     if (ss[i] === ss[i + 1]) {
+//       count++;
+
+//       if (count > maxCount) {
+//         maxCount = count;
+//       }
+//     } else {
+//       count = 1;
+//     }
+//   }
+//   return maxCount;
+// };
+
+// console.log(maxPower(ss, "ssss")); 
+
+
+// 20 Apr, 2026
+// consicutive char
+
+// let l = "leetcode";
+let l = "abbcccddddeeeeedcba";
+
+
+
+function cc(l){
+  let count = 1; 
+  let mC = 1; 
+  for(let i = 0; i < l.length; i++){
+    if(l[i] === l[i + 1]){
+      count ++; 
+      if(count > mC){
+        mC = count; 
+      }
+    } else{
+      count = 1; 
+    }
+  }
+  return mC; 
+}
+console.log(cc(l), "l"); 
+
+//1748
+// let ns = [1, 2, 3, 2];
+
+let ns = [1, 1, 1, 1, 1];
+
+function addUnqNum(ns){
+  c = {};
+  for (let n of ns) {
+    c[n] = (c[n] || 0) + 1;
+  }
+  console.log(c, "c");
+
+  let freq = Object.values(c); 
+
+  let uniNs = new Set(freq);
+  console.log(uniNs, "uniNs"); 
+}
+addUnqNum(ns);
+
+
+// const sumOfUniN = (ns) => {
+//   let count = 0; 
+//   for(let i = 0; i < ns.length; i++){
+//     if(ns[i] !== ns[i + 1]){
+//       count = ns[i] + count; 
+//     } else{
+//       count = 0; 
+//     }
+//   }
+//   return count; 
+// }
+// console.log(sumOfUniN(ns), "co"); 
