@@ -552,35 +552,174 @@ function cc(l){
 }
 console.log(cc(l), "l"); 
 
+// 22 Apr, 2026
 //1748
 // let ns = [1, 2, 3, 2];
 
 let ns = [1, 1, 1, 1, 1];
 
-function addUnqNum(ns){
-  c = {};
-  for (let n of ns) {
-    c[n] = (c[n] || 0) + 1;
+// function addUnqNum(ns){
+//   c = {};
+//   for (let n of ns) {
+//     c[n] = (c[n] || 0) + 1;
+//   }
+//   console.log(c, "c");
+
+//   let freq = Object.keys(c); 
+//   console.log(freq, "freq");
+
+//   return freq.reduce((acc, curr) => {
+//     return c[curr] === 1 ? acc + Number(curr) : acc; 
+//   }, 0); 
+   
+// }
+// console.log(addUnqNum(ns), "ns");
+
+
+// practising again; 
+
+function uniqAdd(ns){
+  let c = {}; 
+
+  for(let n of ns){
+    c[n] = (c[n] || 0) + 1; 
+  }
+  console.log(c, "c"); 
+
+  let fre = Object.keys(c); 
+  console.log(fre, "fre"); 
+
+  return fre.reduce((acc, curr) => {
+    return ( c[curr] === 1 ? acc + Number(curr) : acc); 
+  }, 0)
+}
+
+console.log(uniqAdd(ns), "kjdkjdfj"); 
+
+
+
+//1189  Maximum Number of Balloons
+
+/// leet code solu; 
+let text = "loonbalxballpoon";
+var maxNumberOfBalloons = function (text) {
+  // took a variable for balloon.
+  let balloon = "balloon";
+
+  let count = {};
+  let countBal = {};
+  // findin the frequency for given string;
+  for (let char of text) {
+    count[char] = (count[char] || 0) + 1;
+  }
+
+  // finding the freq. of ballon.
+  for (let ch of balloon) {
+    countBal[ch] = (countBal[ch] || 0) + 1;
+  }
+
+  // Infinity starts as a number, gets replaced by real minimum values!
+  let minBalloons = Infinity;
+
+  //looping over each required letter of balon.
+  for (let chh of "balon") {
+    let available = count[chh] || 0; //letters in text which matches this balon.
+    // console.log(available, "available"); 
+    let needed = countBal[chh];
+    // console.log(needed, "needed"); 
+
+    let possible = Math.floor(available / needed); //how many ballons this makes.
+
+    if (possible < minBalloons) {
+      minBalloons = possible;
+    }
+  }
+
+  return minBalloons;
+};
+console.log(maxNumberOfBalloons(text), "Balloon");
+// (maxNumberOfBalloons(text));
+
+
+let txt = "nlaebolko";
+let ext = "balloon";
+const maxBalloon = (txt) => {
+  let c = {};
+  let balC = {};
+
+  for (let t of txt) {
+    c[t] = (c[t] || 0) + 1;
+  }
+
+  for (let b of ext) {
+    balC[b] = (balC[c] || 0) + 1;
   }
   console.log(c, "c");
+  console.log(balC, "b");
 
-  let freq = Object.values(c); 
+  let minBal = Infinity;
 
-  let uniNs = new Set(freq);
-  console.log(uniNs, "uniNs"); 
+  for (let bn of "Balloon") {
+    let available = c[bn] || 0;
+    console.log(available, "availl");
+
+    let needed = balC[bn];
+    console.log(needed, "needed");
+
+    let counBall = Math.floor(available / needed);
+    console.log(counBall, "counBall");
+
+    if (counBall < minBal) {
+      minBal = counBall;
+    }
+  }
+   return minBal;
+};
+// console.log(maxBalloon(ext));
+console.log(maxBalloon(txt), "maxBalloon"); 
+
+// will do this qs again tommorow; 100%
+
+// 24 Apr, 2026
+
+// let tx = "nlaebolko"; 
+let tx = "loonbalxballpoon"; 
+
+let rt = "balloon"
+function maxBlon(tx){
+  //step 1 finding frequency for each corr in the string.
+let c = {}; 
+let cB = {}; 
+ for(let t of tx){
+  c[t] = (c[t] || 0) + 1; 
+ }
+ console.log(c, "c 693")
+
+ for(r of rt){
+  cB[r] = (cB[r] || 0) + 1; 
+ }
+ console.log(cB, "cB 699");
+
+ let minimum = Infinity; 
+
+ //finding the later can make mini. instances.
+ for(let b of 'Ballon'){
+  let available = c[b] || 0 
+  // console.log(available, "706")
+
+  let needed = cB[b]; 
+
+  let ball = Math.floor(available/needed); 
+
+  if(ball < minimum){
+    minimum = ball; 
+  }
+
+ }
+ return minimum;
+ 
 }
-addUnqNum(ns);
+console.log(maxBlon(tx),  "720");
 
 
-// const sumOfUniN = (ns) => {
-//   let count = 0; 
-//   for(let i = 0; i < ns.length; i++){
-//     if(ns[i] !== ns[i + 1]){
-//       count = ns[i] + count; 
-//     } else{
-//       count = 0; 
-//     }
-//   }
-//   return count; 
-// }
-// console.log(sumOfUniN(ns), "co"); 
+
